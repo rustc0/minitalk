@@ -53,11 +53,10 @@ int	main(void)
 	write(1, "\n", 1);
 	write(1, "listening for signals...", 24);
 	write(1, "\n", 1);
-	signal(SIGUSR1, interpreter);
-	signal(SIGUSR2, interpreter);
 	while (1)
 	{
-		pause();
+		signal(SIGUSR1, interpreter);
+		signal(SIGUSR2, interpreter);
 	}
 	return (0);
 }
