@@ -4,18 +4,19 @@ CLIENT_SRC = client.c
 SERVER_SRC = server.c
 CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 SERVER_OBJ = $(SERVER_SRC:.c=.o)
+HEADER_FILE = minitalk.h
 
-CLIENT = cli
-SERVER = srv
+CLIENT = client
+SERVER = server
 
 #------------------| RULES |-------------------#
 
 all: $(CLIENT) $(SERVER)
 
-$(CLIENT): $(CLIENT_OBJ)
+$(CLIENT): $(CLIENT_OBJ) $(HEADER_FILE)
 	$(CC) $< -o $@
 
-$(SERVER): $(SERVER_OBJ)
+$(SERVER): $(SERVER_OBJ) $(HEADER_FILE)
 	$(CC) $< -o $@
 
 %.o: %.c

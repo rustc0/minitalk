@@ -93,5 +93,4 @@ int	main(int ac, char *av[])
 		write(1, "Error : wrong format\n", 21);
 		return (1);
 	}
-	return (0);
 }
