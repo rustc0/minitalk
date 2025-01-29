@@ -21,21 +21,18 @@ int	ft_atoi(const char *str)
 	i = 0;
 	n = 1;
 	res = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while ((str[i] >= 9 && str[i] <= 13)
+		|| str[i] == 32 || str[i] == '+')
 		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			n = -1;
-		else
-			n = 1;
-		i++;
-	}
+	if (!(str[i] >= '0' && str[i] <= '9'))
+		return (0);
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
+	if (str[i] && !(str[i] >= '0' && str[i] <= '9'))
+		return (0);
 	return (res * n);
 }
 
@@ -81,6 +78,11 @@ int	main(int ac, char *av[])
 	if (ac == 3)
 	{
 		pid = ft_atoi(av[1]);
+		if (pid == 0)
+		{
+			write(2, "invalid pid\n", 13);
+			return (-1);
+		}
 		while (av[2][i])
 		{
 			send_char(pid, av[2][i]);
